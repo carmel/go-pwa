@@ -10,13 +10,13 @@ Images and other resources are often used to enhance a user interface. They are 
 
 ## Access static resources
 
-To work with go-pwa, **static resources are to be put into a directory called `web`**, by default located next to the [server](/architecture#server) executable. They are then accessible by referring to the resource from the `/web/` prefix:
+To work with go-app, **static resources are to be put into a directory called `web`**, by default located next to the [server](/architecture#server) executable. They are then accessible by referring to the resource from the `/web/` prefix:
 
 ```go
 /web/RESOURCE_NAME
 ```
 
-You will find below a couple of examples about how static resources are referred to within go-pwa.
+You will find below a couple of examples about how static resources are referred to within go-app.
 
 ### In Handler
 
@@ -28,7 +28,7 @@ http.Handle("/", &app.Handler{
 	Description: "An Hello World! example",
 	Icon: app.Icon{
 		Default:    "/web/logo.png",       // Specify default favicon.
-		AppleTouch: "/web/logo-pwale.png", // Specify icon on IOS devices.
+		AppleTouch: "/web/logo-apple.png", // Specify icon on IOS devices.
 	},
 	Styles: []string{
 		"/web/hello.css", // Loads hello.css file.

@@ -13,6 +13,10 @@ func newGettingStartedPage() *gettingStartedPage {
 	return &gettingStartedPage{}
 }
 
+func (p *gettingStartedPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *gettingStartedPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }

@@ -14,7 +14,7 @@ import (
 	"github.com/carmel/go-pwa/pkg/errors"
 )
 
-// GenerateStaticWebsite generates the files to run a PWA built with go-pwa as a
+// GenerateStaticWebsite generates the files to run a PWA built with go-app as a
 // static website in the specified directory. Static websites can be used with
 // hosts such as Github Pages.
 //

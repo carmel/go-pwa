@@ -19,7 +19,7 @@ Once the required resources are gathered, it displays the app to the user.
 
 ## Server
 
-The server is what serves the files to make a go-pwa progressive web app work into the web browser:
+The server is what serves the files to make a go-app progressive web app work into the web browser:
 
 - [HTML pages](#html-pages)
 - [Package resources](#package-resources)
@@ -40,17 +40,17 @@ They also contain the markup that provides a pre-rendered version of the request
 
 ## Package resources
 
-Package resources are the mandatory resources to run a go-pwa progressive web app into web browsers. Those resources are:
+Package resources are the mandatory resources to run a go-app progressive web app into web browsers. Those resources are:
 
 | Package resource         | Description                                             |
 | ------------------------ | ------------------------------------------------------- |
 | **wasm_exec.js**         | Script to interop Go and Javascrip APIs.                |
-| **app.js**               | Script that loads app.wasm and go-pwa service workers.  |
-| **app-worker.js**        | Script that implements go-pwa required service workers. |
+| **app.js**               | Script that loads app.wasm and go-app service workers.  |
+| **app-worker.js**        | Script that implements go-app required service workers. |
 | **manifest.webmanifest** | Manifest that describes the progressive web app.        |
-| **app.css**              | go-pwa widgets styles.                                  |
+| **app.css**              | go-app widgets styles.                                  |
 
-They are served by the [server](#server)'s go-pwa [Handler](/reference#Handler) and are accessible from the root of the app domain. Eg: `/app.js`.
+They are served by the [server](#server)'s go-app [Handler](/reference#Handler) and are accessible from the root of the app domain. Eg: `/app.js`.
 
 ## app.wasm
 

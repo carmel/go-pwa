@@ -13,13 +13,17 @@ func newLifecyclePage() *lifecyclePage {
 	return &lifecyclePage{}
 }
 
+func (p *lifecyclePage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *lifecyclePage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *lifecyclePage) initPage(ctx app.Context) {
 	ctx.Page().SetTitle("App Lifecycle and Updates")
-	ctx.Page().SetDescription("Documentation that describes how a web browser installs and updates a go-pwa Progressive Web App.")
+	ctx.Page().SetDescription("Documentation that describes how a web browser installs and updates a go-app Progressive Web App.")
 	analytics.Page("lifecycle", nil)
 }
 

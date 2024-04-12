@@ -45,7 +45,7 @@ func (s *githubSponsor) Render() app.UI {
 								Text("Support on GitHub"),
 							app.P().
 								Class("subtext").
-								Text("Help with go-pwa development by sponsoring it on GitHub."),
+								Text("Help with go-app development by sponsoring it on GitHub."),
 						),
 				),
 		)

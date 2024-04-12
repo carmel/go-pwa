@@ -43,7 +43,7 @@ func (h *hello) Render() app.UI {
 
 ### Exported vs Unexported
 
-In addition to the [Go distinction between exported and unexported fields](https://stackoverflow.com/questions/40256161/exported-and-unexported-fields-in-go-language), go-pwa uses that distinction to define whether a component needs to be updated.
+In addition to the [Go distinction between exported and unexported fields](https://stackoverflow.com/questions/40256161/exported-and-unexported-fields-in-go-language), go-app uses that distinction to define whether a component needs to be updated.
 
 When a UI element update is triggered (done internally), a UI element tree is rendered and compared to the currently displayed one. When 2 child components of the same type are compared to check differences, the comparison is based on the value of exported fields.
 
@@ -113,7 +113,7 @@ It is possible to trigger instructions when those different steps happen by impl
 
 ### Prerender
 
-A component is prerendered when it is used on the server-side to generate HTML markup that is included in a requested HTML page, allowing search engines to index contents created with go-pwa.
+A component is prerendered when it is used on the server-side to generate HTML markup that is included in a requested HTML page, allowing search engines to index contents created with go-app.
 
 Custom actions can be performed by implementing the [PreRenderer](/reference#PreRenderer) interface:
 
@@ -194,7 +194,7 @@ Here is a list of all the component lifecycle events available:
 
 Components are meant to be responsive to different events, modifying their appearance when they occur.
 
-When this is happening, go-pwa internally starts an update mechanism that checks modifications in the currently displayed UI element tree and, performs the necessary modifications to achieve the desired state.
+When this is happening, go-app internally starts an update mechanism that checks modifications in the currently displayed UI element tree and, performs the necessary modifications to achieve the desired state.
 
 **This update mechanism is automatically trigerred when the following scenario occurs:**
 

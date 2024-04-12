@@ -13,13 +13,17 @@ func newArchitecturePage() *architecturePage {
 	return &architecturePage{}
 }
 
+func (p *architecturePage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *architecturePage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *architecturePage) initPage(ctx app.Context) {
-	ctx.Page().SetTitle("Understanding go-pwa Architecture")
-	ctx.Page().SetDescription("Documentation about how go-pwa parts are working together to form a Progressive Web App (PWA).")
+	ctx.Page().SetTitle("Understanding go-app Architecture")
+	ctx.Page().SetDescription("Documentation about how go-app parts are working together to form a Progressive Web App (PWA).")
 	analytics.Page("architecture", nil)
 }
 

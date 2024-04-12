@@ -13,13 +13,17 @@ func newRoutingPage() *routingPage {
 	return &routingPage{}
 }
 
+func (p *routingPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *routingPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *routingPage) initPage(ctx app.Context) {
 	ctx.Page().SetTitle("Routing URL paths to Components")
-	ctx.Page().SetDescription("Documentation about how to associate URL paths to go-pwa components.")
+	ctx.Page().SetDescription("Documentation about how to associate URL paths to go-app components.")
 	analytics.Page("routing", nil)
 }
 

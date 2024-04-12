@@ -2,9 +2,9 @@
 
 [SEO](https://en.wikipedia.org/wiki/Search_engine_optimization) (Search engine optimization) is to make web content readable and indexable by search engines such as [Google](https://google.com).
 
-Because app built with go-pwa are Go binaries loaded in the web browser and their content is generated dynamically on the client-side, it is tricky for search engines to crawl and index apps content.
+Because app built with go-app are Go binaries loaded in the web browser and their content is generated dynamically on the client-side, it is tricky for search engines to crawl and index apps content.
 
-go-pwa is solving that issue by prerendering components on the server-side before including the generated HTML markup into requested pages.
+Go-app is solving that issue by prerendering components on the server-side before including the generated HTML markup into requested pages.
 
 ## Prerendering
 
@@ -90,7 +90,7 @@ Page metadata can be set from the `OnPreRender` [Context](/reference#Context) ar
 
 ```go
 func (h *hello) OnPreRender(ctx app.Context) {
-	ctx.Page.SetTitle("A Hello World written with go-pwa")
+	ctx.Page.SetTitle("A Hello World written with go-app")
 	ctx.Page.SetAuthor("Maxence")
 }
 ```

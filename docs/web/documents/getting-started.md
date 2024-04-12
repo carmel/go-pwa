@@ -1,6 +1,6 @@
 ## Intro
 
-**go-pwa** is a package to build [progressive web apps (PWA)](https://developers.google.com/web/progressive-web-apps/) with the [Go programming language](https://golang.org) and [WebAssembly](https://webassembly.org).
+**go-app** is a package to build [progressive web apps (PWA)](https://developers.google.com/web/progressive-web-apps/) with the [Go programming language](https://golang.org) and [WebAssembly](https://webassembly.org).
 
 You are about to learn how to get started with this package by **building and running an app that displays `Hello World`**.
 
@@ -23,7 +23,7 @@ mkdir -p $GOPATH/src/github.com/YOUR_GITHUB_ID/hello
 cd $GOPATH/src/github.com/YOUR_GITHUB_ID/hello
 ```
 
-Then Initialize the **go module** and download the **go-pwa** package.
+Then Initialize the **go module** and download the **go-app** package.
 
 ```bash
 go mod init
@@ -69,7 +69,7 @@ func (h *hello) Render() app.UI {
 func main() {
 	// The first thing to do is to associate the hello component with a path.
 	//
-	// This is done by calling the Route() function,  which tells go-pwa what
+	// This is done by calling the Route() function,  which tells go-app what
 	// component to display for a given path, on both client and server-side.
 	app.Route("/", &hello{})
 
@@ -105,7 +105,7 @@ func main() {
 
 ## Build and run
 
-Running a progressive app with **go-pwa** requires 2 Go programs:
+Running a progressive app with **go-app** requires 2 Go programs:
 
 - A client that runs in a web browser
 - A server that serves the client and its resources

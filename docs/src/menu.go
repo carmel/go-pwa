@@ -54,7 +54,7 @@ func (m *menu) Render() app.UI {
 							Class("heading").
 							Class("app-title").
 							Href("/").
-							Text("go-pwa"),
+							Text("Go-App"),
 					),
 				),
 		).
@@ -203,13 +203,13 @@ func (m *menu) Render() app.UI {
 
 				app.Div().Class("separator"),
 
-				app.If(m.appInstallable, func() app.UI {
-					return ui.Link().
+				app.If(m.appInstallable,
+					ui.Link().
 						Class(linkClass).
 						Icon(downloadSVG).
 						Label("Install").
-						OnClick(m.installApp)
-				}),
+						OnClick(m.installApp),
+				),
 				ui.Link().
 					Class(linkClass).
 					Icon(userLockSVG).

@@ -220,20 +220,6 @@ func (e Error) MarshalJSON() ([]byte, error) {
 		wrappedErr = e.WrappedErr.Error()
 	}
 
-	var tags map[string]any
-	if l := len(e.Tags); l != 0 {
-		tags = make(map[string]any, l)
-		for k, v := range e.Tags {
-			switch v := v.(type) {
-			case reflect.Type:
-				tags[k] = v.String()
-
-			default:
-				tags[k] = v
-			}
-		}
-	}
-
 	return Encoder(struct {
 		Line        string         `json:"line,omitempty"`
 		Message     string         `json:"message"`
@@ -244,7 +230,7 @@ func (e Error) MarshalJSON() ([]byte, error) {
 		Line:        e.Line,
 		Message:     e.Message,
 		DefinedType: e.DefinedType,
-		Tags:        tags,
+		Tags:        e.Tags,
 		WrappedErr:  wrappedErr,
 	})
 }

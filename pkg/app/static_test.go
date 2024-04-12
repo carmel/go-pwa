@@ -19,9 +19,9 @@ func TestGenerateStaticWebsite(t *testing.T) {
 
 	err := GenerateStaticWebsite(dir,
 		&Handler{
-			Name:      "Static go-pwa",
+			Name:      "Static Go-app",
 			Title:     "Static test",
-			Resources: GitHubPages("go-pwa"),
+			Resources: GitHubPages("go-app"),
 		},
 		"/hello",
 		"world",

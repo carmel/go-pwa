@@ -10,6 +10,13 @@ import (
 	"github.com/carmel/go-pwa/pkg/errors"
 )
 
+var (
+	window    = &browserWindow{}
+	errNoWasm = errors.New("unsupported instruction").
+			WithTag("required-architecture", "wasm").
+			WithTag("current-architecture", runtime.GOARCH)
+)
+
 type value struct{}
 
 func (v value) Bool() bool {
@@ -90,9 +97,7 @@ func (v value) Truthy() bool {
 }
 
 func (v value) Type() Type {
-	panic(errors.New("unsupported instruction").
-		WithTag("required-architecture", "wasm").
-		WithTag("current-architecture", runtime.GOARCH))
+	panic(errNoWasm)
 }
 
 func (v value) Then(f func(Value)) {
@@ -125,7 +130,7 @@ func (v value) firstElementChild() Value {
 	return value{}
 }
 
-func (v value) addEventListener(event string, fn Func, options map[string]any) {
+func (v value) addEventListener(event string, fn Func) {
 }
 
 func (v value) removeEventListener(event string, fn Func) {
@@ -148,7 +153,7 @@ func undefined() Value {
 	return value{}
 }
 
-func valueOf() Value {
+func valueOf(x any) Value {
 	return value{}
 }
 
@@ -159,16 +164,12 @@ type function struct {
 func (f function) Release() {
 }
 
-func funcOf() Func {
+func funcOf(fn func(this Value, args []Value) any) Func {
 	return function{value: value{}}
 }
 
 type browserWindow struct {
 	value
-}
-
-func newBrowserWindow() *browserWindow {
-	return &browserWindow{}
 }
 
 func (w browserWindow) URL() *url.URL {
@@ -191,6 +192,10 @@ func (w *browserWindow) GetElementByID(id string) Value {
 }
 
 func (w *browserWindow) ScrollToID(id string) {
+}
+
+func (w *browserWindow) AddEventListener(event string, h EventHandler) func() {
+	return func() {}
 }
 
 func (w *browserWindow) setBody(body UI) {

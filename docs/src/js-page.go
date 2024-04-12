@@ -13,6 +13,10 @@ func newJSPage() *jsPage {
 	return &jsPage{}
 }
 
+func (p *jsPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *jsPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }

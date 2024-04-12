@@ -68,8 +68,8 @@ type Page interface {
 }
 
 type requestPage struct {
-	url        *url.URL
-	resolveURL func(string) string
+	url                   *url.URL
+	resolveStaticResource func(string) string
 
 	title          string
 	lang           string
@@ -82,13 +82,6 @@ type requestPage struct {
 	width          int
 	height         int
 	twitterCardMap map[string]string
-}
-
-func makeRequestPage(origin *url.URL, resolveURL func(string) string) requestPage {
-	return requestPage{
-		url:        origin,
-		resolveURL: resolveURL,
-	}
 }
 
 func (p *requestPage) Title() string {
@@ -137,7 +130,7 @@ func (p *requestPage) Preloads() []Preload {
 
 func (p *requestPage) SetPreloads(v ...Preload) {
 	for i, r := range v {
-		v[i].Href = p.resolveURL(r.Href)
+		v[i].Href = p.resolveStaticResource(r.Href)
 	}
 	p.preloads = v
 }
@@ -151,9 +144,7 @@ func (p *requestPage) Image() string {
 }
 
 func (p *requestPage) SetImage(v string) {
-	if v != "" {
-		p.image = p.resolveURL(v)
-	}
+	p.image = p.resolveStaticResource(v)
 }
 
 func (p *requestPage) URL() *url.URL {
@@ -169,16 +160,13 @@ func (p *requestPage) Size() (width int, height int) {
 }
 
 func (p *requestPage) SetTwitterCard(v TwitterCard) {
-	v.Image = p.resolveURL(v.Image)
+	v.Image = p.resolveStaticResource(v.Image)
 	p.twitterCardMap = v.toMap()
 }
 
 type browserPage struct {
-	resolveURL func(string) string
-}
-
-func makeBrowserPage(resolveURL func(string) string) browserPage {
-	return browserPage{resolveURL: resolveURL}
+	url                   *url.URL
+	resolveStaticResource func(string) string
 }
 
 func (p browserPage) Title() string {
@@ -248,12 +236,13 @@ func (p browserPage) Image() string {
 }
 
 func (p browserPage) SetImage(v string) {
-	if v != "" {
-		p.metaByProperty("og:image").setAttr("content", p.resolveURL(v))
-	}
+	p.metaByProperty("og:image").setAttr("content", p.resolveStaticResource(v))
 }
 
 func (p browserPage) URL() *url.URL {
+	if p.url != nil {
+		return p.url
+	}
 	return Window().URL()
 }
 
@@ -267,7 +256,7 @@ func (p browserPage) Size() (width int, height int) {
 }
 
 func (p browserPage) SetTwitterCard(v TwitterCard) {
-	v.Image = p.resolveURL(v.Image)
+	v.Image = p.resolveStaticResource(v.Image)
 	head := Window().Get("document").Get("head")
 
 	for k, v := range v.toMap() {

@@ -7,45 +7,27 @@ import (
 	"github.com/carmel/go-pwa/pkg/errors"
 )
 
-// BrowserStorage defines an interface for interacting with web browser storage
-// mechanisms (such as localStorage in the Web API). It provides methods to set,
-// get, delete, and iterate over stored items, among other functionalities.
+// BrowserStorage is the interface that describes a web browser storage.
 type BrowserStorage interface {
-	// Set stores a value associated with a given key. The value must be capable
-	// of being converted to JSON format. If the value cannot be converted to
-	// JSON or if there's an issue with storage, an error is returned.
+	// Set sets the value to the given key. The value must be json convertible.
 	Set(k string, v any) error
 
-	// Get retrieves the value associated with a given key and stores it into
-	// the provided variable v. The variable v must be a pointer to a type that
-	// is compatible with the stored value. If v is not a pointer, an error is
-	// returned, indicating incorrect usage.
-	//
-	// If the key does not exist, the operation performs no action on v, leaving
-	// it unchanged. Use Contains to check whether a key exists.
+	// Get gets the item associated to the given key and store it in the given
+	// value.
+	// It returns an error if v is not a pointer.
 	Get(k string, v any) error
 
-	// Del removes the item associated with the specified key from the storage.
-	// If the key does not exist, the operation is a no-op.
+	// Del deletes the item associated with the given key.
 	Del(k string)
 
-	// Len returns the total number of items currently stored. This count
-	// includes all keys, regardless of their value.
+	// Len returns the number of items stored.
 	Len() int
 
-	// Clear removes all items from the storage, effectively resetting it.
+	// Key returns the key of the item associated to the given index.
+	Key(i int) (string, error)
+
+	// Clear deletes all items.
 	Clear()
-
-	// ForEach iterates over each item in the storage, executing the provided
-	// function f for each key. The exact order of iteration is not guaranteed
-	// and may vary across different implementations.
-	ForEach(f func(k string))
-
-	// Contains checks if the storage contains an item associated with the given
-	// key. It returns true if the item exists, false otherwise. This method
-	// provides a way to check for the existence of a key without retrieving the
-	// associated value.
-	Contains(k string) bool
 }
 
 type memoryStorage struct {
@@ -104,15 +86,21 @@ func (s *memoryStorage) Len() int {
 	return l
 }
 
-func (s *memoryStorage) ForEach(f func(key string)) {
-	for k := range s.data {
-		f(k)
-	}
-}
+func (s *memoryStorage) Key(i int) (string, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
 
-func (s *memoryStorage) Contains(k string) bool {
-	_, ok := s.data[k]
-	return ok
+	j := 0
+	for k := range s.data {
+		if i == j {
+			return k, nil
+		}
+		j++
+	}
+
+	return "", errors.New("index out of range").
+		WithTag("index", i).
+		WithTag("len", s.Len())
 }
 
 type jsStorage struct {
@@ -152,7 +140,7 @@ func (s *jsStorage) Get(k string, v any) error {
 	defer s.mutex.RUnlock()
 
 	item := Window().Get(s.name).Call("getItem", k)
-	if item.IsNull() {
+	if !item.Truthy() {
 		return nil
 	}
 
@@ -162,18 +150,21 @@ func (s *jsStorage) Get(k string, v any) error {
 func (s *jsStorage) Del(k string) {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
+
 	Window().Get(s.name).Call("removeItem", k)
 }
 
 func (s *jsStorage) Clear() {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
+
 	Window().Get(s.name).Call("clear")
 }
 
 func (s *jsStorage) Len() int {
 	s.mutex.Lock()
 	defer s.mutex.Unlock()
+
 	return s.len()
 }
 
@@ -181,25 +172,12 @@ func (s *jsStorage) len() int {
 	return Window().Get(s.name).Get("length").Int()
 }
 
-func (s *jsStorage) ForEach(f func(key string)) {
-	s.mutex.Lock()
-	length := s.len()
-	keys := make(map[string]struct{}, length)
-	for i := 0; i < length; i++ {
-		key := Window().Get(s.name).Call("key", i)
-		if key.Truthy() {
-			keys[key.String()] = struct{}{}
-		}
+func (s *jsStorage) Key(i int) (string, error) {
+	if l := s.len(); i < 0 || i >= l {
+		return "", errors.New("index out of range").
+			WithTag("index", i).
+			WithTag("len", l)
 	}
-	s.mutex.Unlock()
 
-	for key := range keys {
-		f(key)
-	}
-}
-
-func (s *jsStorage) Contains(k string) bool {
-	s.mutex.Lock()
-	defer s.mutex.Unlock()
-	return !Window().Get(s.name).Call("getItem", k).IsNull()
+	return Window().Get(s.name).Call("key", i).String(), nil
 }

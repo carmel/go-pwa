@@ -9,9 +9,20 @@ import (
 	"github.com/carmel/go-pwa/pkg/errors"
 )
 
+const (
+	appJS        = ""
+	appWorkerJS  = ""
+	manifestJSON = ""
+	appCSS       = ""
+)
+
+var (
+	errBadInstruction = errors.New("unsupported instruction").
+		WithTag("architecture", runtime.GOARCH)
+)
+
 func GenerateStaticWebsite(dir string, h *Handler, pages ...string) error {
-	panic(errors.New("unsupported instruction").
-		WithTag("architecture", runtime.GOARCH))
+	panic(errBadInstruction)
 }
 
 func wasmExecJS() string {

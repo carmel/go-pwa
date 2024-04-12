@@ -22,6 +22,10 @@ func newNotificationsPage() *notificationsPage {
 	return &notificationsPage{}
 }
 
+func (p *notificationsPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *notificationsPage) OnMount(ctx app.Context) {
 	p.notificationPermission = ctx.Notifications().Permission()
 	p.registerSubscription(ctx)
@@ -100,8 +104,8 @@ func (p *notificationsPage) testNotification(ctx app.Context, e app.Event) {
 	n := rand.Intn(43)
 
 	ctx.Notifications().New(app.Notification{
-		Title: fmt.Sprintln("go-pwa test", n),
-		Body:  fmt.Sprintln("Test notification for go-pwa number", n),
+		Title: fmt.Sprintln("go-app test", n),
+		Body:  fmt.Sprintln("Test notification for go-app number", n),
 		Path:  "/notifications#example",
 	})
 }

@@ -1,18 +1,12 @@
 // -----------------------------------------------------------------------------
-// go-pwa
+// go-app
 // -----------------------------------------------------------------------------
 var goappNav = function () {};
 var goappOnUpdate = function () {};
 var goappOnAppInstallChange = function () {};
 
-const goappEnv = {
-  GOAPP_INTERNAL_URLS: "null",
-  GOAPP_ROOT_PREFIX: "/",
-  GOAPP_STATIC_RESOURCES_URL: "/web",
-  GOAPP_VERSION: "8a5b8e9e77360856e3666adbdd05a1a9e4e08803",
-};
-const goappLoadingLabel = "go-pwa documentation {progress}%";
-const goappWasmContentLength = "";
+const goappEnv = {"GOAPP_INTERNAL_URLS":"null","GOAPP_ROOT_PREFIX":"","GOAPP_STATIC_RESOURCES_URL":"","GOAPP_VERSION":"08848207254ed19206a7e0901b6c869dca9004c8"};
+const goappLoadingLabel = "go-app documentation {progress}%";
 const goappWasmContentLengthHeader = "";
 
 let goappServiceWorkerRegistration;
@@ -61,7 +55,7 @@ function goappSetupNotifyUpdate(registration) {
       if (!navigator.serviceWorker.controller) {
         return;
       }
-      if (newSW.state != "activated") {
+      if (newSW.state != "installed") {
         return;
       }
       goappOnUpdate();
@@ -246,14 +240,12 @@ function goappCanLoadWebAssembly() {
 async function fetchWithProgress(url, progess) {
   const response = await fetch(url);
 
-  let contentLength = goappWasmContentLength;
-  if (contentLength <= 0) {
-    try {
-      contentLength = response.headers.get(goappWasmContentLengthHeader);
-    } catch {}
-    if (!goappWasmContentLengthHeader || !contentLength) {
-      contentLength = response.headers.get("Content-Length");
-    }
+  let contentLength;
+  try {
+    contentLength = response.headers.get(goappWasmContentLengthHeader);
+  } catch {}
+  if (!goappWasmContentLengthHeader || !contentLength) {
+    contentLength = response.headers.get("Content-Length");
   }
 
   const total = parseInt(contentLength, 10);

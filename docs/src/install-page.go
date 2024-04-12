@@ -13,13 +13,17 @@ func newInstallPage() *installPage {
 	return &installPage{}
 }
 
+func (p *installPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *installPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *installPage) initPage(ctx app.Context) {
 	ctx.Page().SetTitle("Handling App Install")
-	ctx.Page().SetDescription("Documentation about how to install an app created with go-pwa.")
+	ctx.Page().SetDescription("Documentation about how to install an app created with go-app.")
 	analytics.Page("install", nil)
 }
 

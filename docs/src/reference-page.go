@@ -13,13 +13,17 @@ func newReferencePage() *referencePage {
 	return &referencePage{}
 }
 
+func (p *referencePage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *referencePage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *referencePage) initPage(ctx app.Context) {
 	ctx.Page().SetTitle("Reference for building PWA with Go and WASM")
-	ctx.Page().SetDescription("go-pwa API reference for building Progressive Web Apps (PWA) with Go (Golang) and WebAssembly (WASM).")
+	ctx.Page().SetDescription("Go-app API reference for building Progressive Web Apps (PWA) with Go (Golang) and WebAssembly (WASM).")
 	analytics.Page("reference", nil)
 }
 

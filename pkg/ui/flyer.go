@@ -117,16 +117,16 @@ func (f *flyer) Bonus(v ...app.UI) IFlyer {
 	return f
 }
 
-func (f *flyer) OnMount() {
-	f.resize()
+func (f *flyer) OnMount(ctx app.Context) {
+	f.resize(ctx)
 }
 
-func (f *flyer) OnResize() {
-	f.resize()
+func (f *flyer) OnResize(ctx app.Context) {
+	f.resize(ctx)
 }
 
-func (f *flyer) OnUpdate() {
-	f.resize()
+func (f *flyer) OnUpdate(ctx app.Context) {
+	f.resize(ctx)
 }
 
 func (f *flyer) Render() app.UI {
@@ -183,7 +183,7 @@ func (f *flyer) Render() app.UI {
 		)
 }
 
-func (f *flyer) resize() {
+func (f *flyer) resize(ctx app.Context) {
 	if app.IsServer {
 		return
 	}

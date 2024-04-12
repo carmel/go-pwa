@@ -17,12 +17,6 @@
       "src": "{{.DefaultIcon}}",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "{{.MaskableIcon}}",
-      "type": "image/png",
-      "purpose": "maskable",
-      "sizes": "192x192"
     }
   ],
   "scope": "{{.Scope}}",

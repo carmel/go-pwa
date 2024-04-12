@@ -1,6 +1,6 @@
 ## Intro
 
-The go-pwa declarative syntax is to customize [components](/components)' look.
+The go-app declarative syntax is to customize [components](/components)' look.
 
 It uses a chaining mechanism made from the [Go programming language](https://golang.org) syntax that allows composing HTML elements and components in order to craft beautiful and usable UIs.
 
@@ -21,7 +21,7 @@ func (c *myCompo) Render() app.UI {
 
 ## HTML Elements
 
-go-pwa provides interfaces for each standard HTML element. Those interfaces describe setters for attributes and event handlers.
+Go-app provides interfaces for each standard HTML element. Those interfaces describe setters for attributes and event handlers.
 
 Here is a simplified version of the interface for a [\<div>](/reference#HTMLDiv):
 
@@ -135,7 +135,7 @@ func (c *myCompo) onClick(ctx app.Context, e app.Event) {
 }
 ```
 
-The [Context](/reference#Context) argument embeds several go-pwa tools that help in creating responsive UIs. Usable with any function accepting a [Go standard context](https://golang.org/pkg/context/#Context), it is canceled when the source of the event is dismounted. The source element value can be retrieved with the JSSrc field:
+The [Context](/reference#Context) argument embeds several go-app tools that help in creating responsive UIs. Usable with any function accepting a [Go standard context](https://golang.org/pkg/context/#Context), it is canceled when the source of the event is dismounted. The source element value can be retrieved with the JSSrc field:
 
 ```go
 func (c *myCompo) Render() app.UI {
@@ -232,10 +232,9 @@ type myCompo struct {
 
 func (c *myCompo) Render() app.UI {
 	return app.Div().Body(
-		app.If(c.showTitle, func() app.UI {
-			return app.H1().Text("hello")
-
-		}),
+		app.If(c.showTitle,
+			app.H1().Text("hello"),
+		),
 	)
 }
 ```
@@ -253,19 +252,19 @@ type myCompo struct {
 
 func (c *myCompo) Render() app.UI {
 	return app.Div().Body(
-		app.If(c.color > 7, func() app.UI {
-			return app.H1().
+		app.If(c.color > 7,
+			app.H1().
 				Style("color", "green").
-				Text("Good!")
-		}).ElseIf(c.color < 4, func() app.UI {
-			return app.H1().
+				Text("Good!"),
+		).ElseIf(c.color < 4,
+			app.H1().
 				Style("color", "red").
-				Text("Bad!")
-		}).Else(func() app.UI {
-			return app.H1().
+				Text("Bad!"),
+		).Else(
+			app.H1().
 				Style("color", "orange").
-				Text("So so!")
-		}),
+				Text("So so!"),
+		),
 	)
 }
 ```
@@ -283,11 +282,11 @@ type myCompo struct {
 
 func (c *myCompo) Render() app.UI {
 	return app.Div().Body(
-		app.If(c.showTitle, func() app.UI {
-			return app.H1().Text("hello")
-		}).Else(func() app.UI {
-			return app.Text("world") // Shown when showTitle == false
-		}),
+		app.If(c.showTitle,
+			app.H1().Text("hello"),
+		).Else(
+			app.Text("world"), // Shown when showTitle == false
+		),
 	)
 }
 ```
@@ -304,7 +303,7 @@ Here is a slice example that shows an unordered list from a `[]string`:
 func (c *myCompo) Render() app.UI {
 	data := []string{
 		"hello",
-		"go-pwa",
+		"go-app",
 		"is",
 		"sexy",
 	}

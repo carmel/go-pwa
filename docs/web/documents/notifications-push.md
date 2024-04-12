@@ -120,7 +120,7 @@ func (h *notificationHandler) handleTests(w http.ResponseWriter, r *http.Request
 		go func(sub webpush.Subscription) {
 			body, _ := json.Marshal(app.Notification{
 				Title: "Push test from server",
-				Body:  "go-pwa push notification number",
+				Body:  "go-app push notification number",
 				Path: "/mypage"
 			})
 
@@ -139,4 +139,4 @@ func (h *notificationHandler) handleTests(w http.ResponseWriter, r *http.Request
 }
 ```
 
-**Push servers can be implemented in various programming languages. The requirement to receive a push notification with go-pwa is that the notification message is a JSON encoded [Notification struct](/reference#Notification).**
+**Push servers can be implemented in various programming languages. The requirement to receive a push notification with go-app is that the notification message is a JSON encoded [Notification struct](/reference#Notification).**

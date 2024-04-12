@@ -13,13 +13,17 @@ func newMigratePage() *migratePage {
 	return &migratePage{}
 }
 
+func (p *migratePage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *migratePage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *migratePage) initPage(ctx app.Context) {
-	ctx.Page().SetTitle("Migrate Codebase From go-pwa v8 To v9")
-	ctx.Page().SetDescription("Documentation about what changed between go-pwa v8 and v9.")
+	ctx.Page().SetTitle("Migrate Codebase From go-app v8 To v9")
+	ctx.Page().SetDescription("Documentation about what changed between go-app v8 and v9.")
 	analytics.Page("migrate", nil)
 }
 

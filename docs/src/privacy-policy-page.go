@@ -13,13 +13,17 @@ func newPrivacyPolicyPage() *privacyPolicyPage {
 	return &privacyPolicyPage{}
 }
 
+func (p *privacyPolicyPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *privacyPolicyPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *privacyPolicyPage) initPage(ctx app.Context) {
 	ctx.Page().SetTitle("Privacy Policy")
-	ctx.Page().SetDescription("go-pwa documentation privacy policy.")
+	ctx.Page().SetDescription("go-app documentation privacy policy.")
 	analytics.Page("privacy-policy", nil)
 }
 

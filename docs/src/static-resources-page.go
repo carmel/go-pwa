@@ -13,6 +13,10 @@ func newStaticResourcePage() *staticResourcesPage {
 	return &staticResourcesPage{}
 }
 
+func (p *staticResourcesPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *staticResourcesPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }

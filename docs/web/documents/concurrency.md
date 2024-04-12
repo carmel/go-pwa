@@ -1,8 +1,8 @@
 ## Intro
 
-In go-pwa, every event and user interaction are handled on a single goroutine. Because some scenarios can have a long execution time, like performing an HTTP request, there is chances that the UI feels slow or unresponsive.
+In go-app, every event and user interaction are handled on a single goroutine. Because some scenarios can have a long execution time, like performing an HTTP request, there is chances that the UI feels slow or unresponsive.
 
-This document describes how it works and what tools go-pwa provides to solve this problem.
+This document describes how it works and what tools go-app provides to solve this problem.
 
 ![concurrency.png](/web/images/concurrency.svg)
 
@@ -54,7 +54,7 @@ func (f *foo) OnNav(ctx app.Context) {
 }
 ```
 
-The difference with manually launching a goroutine is that go-pwa has no insights about when a manually launched goroutine ceases its execution. It's not a problem on the client-side but when prerendering on the server-side, go-pwa has to wait for all launched goroutines to finish their jobs in order to properly generate HTML markup. Therefore, manually launching a goroutine for UI-related purposes introduces reliability issues on the server-side.
+The difference with manually launching a goroutine is that go-app has no insights about when a manually launched goroutine ceases its execution. It's not a problem on the client-side but when prerendering on the server-side, go-app has to wait for all launched goroutines to finish their jobs in order to properly generate HTML markup. Therefore, manually launching a goroutine for UI-related purposes introduces reliability issues on the server-side.
 
 **Prefer the use of [Async()](/reference#Context.Async) rather than manually launching a goroutine when dealing with UI**.
 

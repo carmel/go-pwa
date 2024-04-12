@@ -13,13 +13,17 @@ func newTestingPage() *testingPage {
 	return &testingPage{}
 }
 
+func (p *testingPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *testingPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *testingPage) initPage(ctx app.Context) {
 	ctx.Page().SetTitle("Testing Components")
-	ctx.Page().SetDescription("Documentation about how to unit test components created with go-pwa.")
+	ctx.Page().SetDescription("Documentation about how to unit test components created with go-app.")
 	analytics.Page("testing", nil)
 }
 

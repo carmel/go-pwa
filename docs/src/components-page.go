@@ -13,6 +13,10 @@ func newComponentsPage() *componentsPage {
 	return &componentsPage{}
 }
 
+func (p *componentsPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *componentsPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }

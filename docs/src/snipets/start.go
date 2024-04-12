@@ -27,9 +27,9 @@ func (h *hello) Render() app.UI {
 func main() {
 	// The first thing to do is to associate the hello component with a path.
 	//
-	// This is done by calling the Route() function,  which tells go-pwa what
+	// This is done by calling the Route() function,  which tells go-app what
 	// component to display for a given path, on both client and server-side.
-	app.Route("/", app.NewZeroComponentFactory(&hello{}))
+	app.Route("/", &hello{})
 
 	// Once the routes set up, the next thing to do is to either launch the app
 	// or the server that serves the app.

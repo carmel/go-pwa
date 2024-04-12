@@ -2,7 +2,7 @@
 
 [GitHub Pages](https://pages.github.com) is a pretty easy way to have a running and available website. The limitation is that only static websites can be hosted.
 
-PWAs created with go-pwa are usually served by a [standard Go HTTP server](https://pkg.go.dev/net/http#Server). That said, **it is possible to generate them as completely static websites in order to have them running from hosts like GitHub Pages**.
+PWAs created with go-app are usually served by a [standard Go HTTP server](https://pkg.go.dev/net/http#Server). That said, **it is possible to generate them as completely static websites in order to have them running from hosts like GitHub Pages**.
 
 ## Generate a Static Website
 

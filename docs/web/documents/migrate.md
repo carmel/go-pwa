@@ -1,10 +1,10 @@
 ## Intro
 
-go-pwa v9 brings new features like removing the need to manually call `compo.Update()` to update what is displayed on the screen. Unfortunately, it comes with some breaking changes.
+go-app v9 brings new features like removing the need to manually call `compo.Update()` to update what is displayed on the screen. Unfortunately, it comes with some breaking changes.
 
 ## Changes
 
-This document has for purpose to help you transition from go-pwa v8 to v9 by enumerating the API changes.
+This document has for purpose to help you transition from go-app v8 to v9 by enumerating the API changes.
 
 ### General
 

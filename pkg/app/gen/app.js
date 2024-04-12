@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// go-pwa
+// go-app
 // -----------------------------------------------------------------------------
 var goappNav = function () {};
 var goappOnUpdate = function () {};
@@ -7,7 +7,6 @@ var goappOnAppInstallChange = function () {};
 
 const goappEnv = {{.Env}};
 const goappLoadingLabel = "{{.LoadingLabel}}";
-const goappWasmContentLength = "{{.WasmContentLength}}";
 const goappWasmContentLengthHeader = "{{.WasmContentLengthHeader}}";
 
 let goappServiceWorkerRegistration;
@@ -30,6 +29,7 @@ async function goappInitServiceWorker() {
 
       goappServiceWorkerRegistration = registration;
       goappSetupNotifyUpdate(registration);
+      goappSetupAutoUpdate(registration);
       goappSetupPushNotification();
     } catch (err) {
       console.error("goapp service worker registration failed", err);
@@ -55,7 +55,7 @@ function goappSetupNotifyUpdate(registration) {
       if (!navigator.serviceWorker.controller) {
         return;
       }
-      if (newSW.state != "activated") {
+      if (newSW.state != "installed") {
         return;
       }
       goappOnUpdate();
@@ -63,11 +63,15 @@ function goappSetupNotifyUpdate(registration) {
   });
 }
 
-function goappTryUpdate() {
-  if (!goappServiceWorkerRegistration) {
+function goappSetupAutoUpdate(registration) {
+  const autoUpdateInterval = "{{.AutoUpdateInterval}}";
+  if (autoUpdateInterval == 0) {
     return;
   }
-  goappServiceWorkerRegistration.update();
+
+  window.setInterval(() => {
+    registration.update();
+  }, autoUpdateInterval);
 }
 
 // -----------------------------------------------------------------------------
@@ -236,14 +240,12 @@ function goappCanLoadWebAssembly() {
 async function fetchWithProgress(url, progess) {
   const response = await fetch(url);
 
-  let contentLength = goappWasmContentLength;
-  if (contentLength <= 0) {
-    try {
-      contentLength = response.headers.get(goappWasmContentLengthHeader);
-    } catch {}
-    if (!goappWasmContentLengthHeader || !contentLength) {
-      contentLength = response.headers.get("Content-Length");
-    }
+  let contentLength;
+  try {
+    contentLength = response.headers.get(goappWasmContentLengthHeader);
+  } catch {}
+  if (!goappWasmContentLengthHeader || !contentLength) {
+    contentLength = response.headers.get("Content-Length");
   }
 
   const total = parseInt(contentLength, 10);

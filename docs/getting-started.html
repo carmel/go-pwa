@@ -8,15 +8,15 @@
       content="Documentation that shows how to start building a Progressive Web App (PWA) with Go (Golang) and WebAssembly (WASM)."
     />
     <meta
+      content="go-app, go, golang, app, pwa, progressive web app, webassembly, web assembly, webapp, web, gui, ui, user interface, graphical user interface, frontend, opensource, open source, github"
       name="keywords"
-      content="go-pwa, go, golang, app, pwa, progressive web app, webassembly, web assembly, webapp, web, gui, ui, user interface, graphical user interface, frontend, opensource, open source, github"
     />
     <meta name="theme-color" content="#2e343a" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover"
     />
-    <meta property="og:url" content="https:///getting-started" />
+    <meta property="og:url" content="http://127.0.0.1:60452/getting-started" />
     <meta property="og:title" content="Start building a PWA with Go and WASM" />
     <meta
       property="og:description"
@@ -25,34 +25,34 @@
     <meta property="og:type" content="website" />
     <meta
       property="og:image"
-      content="https://go-pwa.dev/web/images/go-pwa.png"
+      content="https://go-app.dev/web/images/go-app.png"
     />
     <title>Start building a PWA with Go and WASM</title>
-    <link rel="preload" as="style" href="/app.css" type="text/css" />
+    <link type="text/css" rel="preload" href="/app.css" as="style" />
     <link
-      href="https://fonts.googleapis.com/css2?family=montserrat:wght@400;500&display=swap"
       type="text/css"
       rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
       as="style"
     />
-    <link href="/web/css/prism.css" type="text/css" rel="preload" as="style" />
-    <link href="/web/css/docs.css" type="text/css" rel="preload" as="style" />
+    <link type="text/css" rel="preload" href="/web/css/prism.css" as="style" />
+    <link rel="preload" href="/web/css/docs.css" as="style" type="text/css" />
     <link
       rel="icon"
-      href="https://raw.githubusercontent.com/maxence-charriere/go-pwa/master/docs/web/icon.svg"
+      href="https://raw.githubusercontent.com/maxence-charriere/go-app/master/docs/web/icon.svg"
     />
     <link rel="apple-touch-icon" href="/web/icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <link href="/app.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/app.css" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=montserrat:wght@400;500&display=swap"
       type="text/css"
     />
-    <link href="/web/css/prism.css" type="text/css" rel="stylesheet" />
-    <link href="/web/css/docs.css" type="text/css" rel="stylesheet" />
-    <script defer src="/wasm_exec.js"></script>
-    <script src="/app.js" defer></script>
+    <link href="/web/css/prism.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/web/css/docs.css" />
+    <script src="/wasm_exec.js" defer></script>
+    <script defer src="/app.js"></script>
     <script src="/web/js/prism.js" defer></script>
     <script
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1013306768105236"
@@ -75,9 +75,9 @@
     </script>
   </head>
   <body>
-    <div data-goapp-ui="shell" class="fill background">
+    <div class="fill background" data-goapp-ui="shell">
       <div
-        id="goapp-shell-09efc7f7-7c6f-48eb-93b4-98041add0f5f"
+        id="goapp-shell-f0343218-bd06-43bd-8760-28fc7e66a7c4"
         style="display: flex; width: 100%; height: 100%; overflow: hidden"
       >
         <div
@@ -89,7 +89,7 @@
             overflow: hidden;
           "
         >
-          <div data-goapp-ui="scroll" class="menu fill">
+          <div class="menu fill" data-goapp-ui="scroll">
             <div
               style="width: 100%; height: calc(100% - 24px); padding: 12px 0"
             >
@@ -97,16 +97,16 @@
                 style="width: calc(100% - 24px); padding: 0 12px; height: 72px"
               >
                 <div
-                  data-goapp="Stack"
-                  class="fill"
                   style="
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
                   "
+                  data-goapp="Stack"
+                  class="fill"
                 >
                   <header>
-                    <a class="heading app-title" href="/">go-pwa</a>
+                    <a class="heading app-title" href="/">Go-App</a>
                   </header>
                 </div>
               </div>
@@ -121,8 +121,8 @@
               >
                 <nav>
                   <div class="separator"></div>
-                  <a class="link heading fit unselectable" href="/">
-                    <div
+                  <a class="link heading fit unselectable" title href="/"
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -132,6 +132,7 @@
                       "
                     >
                       <div
+                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -141,7 +142,6 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
-                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -154,13 +154,13 @@
                         </svg>
                       </div>
                       <div>Home</div>
-                    </div>
-                  </a>
-                  <a
-                    href="/getting-started"
-                    class="link heading fit unselectable"
+                    </div></a
                   >
-                    <div
+                  <a
+                    class="link heading fit unselectable"
+                    title
+                    href="/getting-started"
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -170,7 +170,6 @@
                       "
                     >
                       <div
-                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -180,6 +179,7 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
+                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -192,10 +192,13 @@
                         </svg>
                       </div>
                       <div>Getting Started</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/architecture">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    class="link heading fit unselectable"
+                    title
+                    href="/architecture"
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -227,10 +230,13 @@
                         </svg>
                       </div>
                       <div>Architecture</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/reference">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    href="/reference"
+                    class="link heading fit unselectable"
+                    title
+                    ><div
                       style="
                         display: flex;
                         justify-content: flex-start;
@@ -280,11 +286,14 @@
                         </svg>
                       </div>
                       <div>Reference</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <div class="separator"></div>
-                  <a class="link heading fit unselectable" href="/components">
-                    <div
+                  <a
+                    class="link heading fit unselectable"
+                    title
+                    href="/components"
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -316,13 +325,13 @@
                         </svg>
                       </div>
                       <div>Components</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <a
                     class="link heading fit unselectable"
+                    title
                     href="/declarative-syntax"
-                  >
-                    <div
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -332,7 +341,6 @@
                       "
                     >
                       <div
-                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -342,6 +350,7 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
+                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -354,19 +363,20 @@
                         </svg>
                       </div>
                       <div>Declarative Syntax</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/routing">
-                    <div
-                      data-goapp="Stack"
+                    </div></a
+                  >
+                  <a class="link heading fit unselectable" title href="/routing"
+                    ><div
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
+                      data-goapp="Stack"
                     >
                       <div
+                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -376,7 +386,6 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
-                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -389,20 +398,20 @@
                         </svg>
                       </div>
                       <div>Routing</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <a
                     class="link heading fit unselectable"
+                    title
                     href="/static-resources"
-                  >
-                    <div
+                    ><div
+                      data-goapp="Stack"
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
-                      data-goapp="Stack"
                     >
                       <div
                         data-goapp="Icon"
@@ -427,10 +436,10 @@
                         </svg>
                       </div>
                       <div>Images and Static Resources</div>
-                    </div>
-                  </a>
-                  <a href="/js" class="link heading fit unselectable">
-                    <div
+                    </div></a
+                  >
+                  <a href="/js" class="link heading fit unselectable" title
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -462,10 +471,13 @@
                         </svg>
                       </div>
                       <div>JavaScript Interoperability</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/concurrency">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    href="/concurrency"
+                    class="link heading fit unselectable"
+                    title
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -497,10 +509,10 @@
                         </svg>
                       </div>
                       <div>Concurrency</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/seo">
-                    <div
+                    </div></a
+                  >
+                  <a class="link heading fit unselectable" title href="/seo"
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -510,7 +522,6 @@
                       "
                     >
                       <div
-                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -520,6 +531,7 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
+                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -532,17 +544,20 @@
                         </svg>
                       </div>
                       <div>SEO</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/lifecycle">
-                    <div
+                    </div></a
+                  >
+                  <a
+                    class="link heading fit unselectable"
+                    title
+                    href="/lifecycle"
+                    ><div
+                      data-goapp="Stack"
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
-                      data-goapp="Stack"
                     >
                       <div
                         data-goapp="Icon"
@@ -567,20 +582,19 @@
                         </svg>
                       </div>
                       <div>Lifecycle and Updates</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/install">
-                    <div
+                    </div></a
+                  >
+                  <a title href="/install" class="link heading fit unselectable"
+                    ><div
+                      data-goapp="Stack"
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
-                      data-goapp="Stack"
                     >
                       <div
-                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -590,6 +604,7 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
+                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -602,19 +617,20 @@
                         </svg>
                       </div>
                       <div>Install</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/testing">
-                    <div
+                    </div></a
+                  >
+                  <a class="link heading fit unselectable" title href="/testing"
+                    ><div
+                      data-goapp="Stack"
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
-                      data-goapp="Stack"
                     >
                       <div
+                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -624,7 +640,6 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
-                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -637,17 +652,17 @@
                         </svg>
                       </div>
                       <div>Testing</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/actions">
-                    <div
-                      data-goapp="Stack"
+                    </div></a
+                  >
+                  <a class="link heading fit unselectable" title href="/actions"
+                    ><div
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
+                      data-goapp="Stack"
                     >
                       <div
                         data-goapp="Icon"
@@ -672,10 +687,10 @@
                         </svg>
                       </div>
                       <div>Actions</div>
-                    </div>
-                  </a>
-                  <a class="link heading fit unselectable" href="/states">
-                    <div
+                    </div></a
+                  >
+                  <a class="link heading fit unselectable" title href="/states"
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -685,7 +700,6 @@
                       "
                     >
                       <div
-                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -695,6 +709,7 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
+                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -707,13 +722,13 @@
                         </svg>
                       </div>
                       <div>State Management</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <a
                     class="link heading fit unselectable"
+                    title
                     href="/notifications"
-                  >
-                    <div
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -745,18 +760,18 @@
                         </svg>
                       </div>
                       <div>Notifications</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <div class="separator"></div>
-                  <a class="link heading fit unselectable" href="/migrate">
-                    <div
-                      data-goapp="Stack"
+                  <a class="link heading fit unselectable" title href="/migrate"
+                    ><div
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
+                      data-goapp="Stack"
                     >
                       <div
                         data-goapp="Icon"
@@ -781,13 +796,13 @@
                         </svg>
                       </div>
                       <div>Migrate From v8 to v9</div>
-                    </div>
-                  </a>
-                  <a
-                    class="link heading fit unselectable"
-                    href="/github-deploy"
+                    </div></a
                   >
-                    <div
+                  <a
+                    href="/github-deploy"
+                    class="link heading fit unselectable"
+                    title
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -797,6 +812,7 @@
                       "
                     >
                       <div
+                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -806,7 +822,6 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
-                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -819,23 +834,24 @@
                         </svg>
                       </div>
                       <div>Deploy on GitHub Pages</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <div class="separator"></div>
                   <a
                     class="link heading fit unselectable"
+                    title
                     href="https://twitter.com/jonhymaxoo"
-                  >
-                    <div
-                      data-goapp="Stack"
+                    ><div
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
+                      data-goapp="Stack"
                     >
                       <div
+                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -845,7 +861,6 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
-                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -858,13 +873,13 @@
                         </svg>
                       </div>
                       <div>Twitter</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <a
                     class="link heading fit unselectable"
-                    href="https://github.com/carmel/go-pwa"
-                  >
-                    <div
+                    title
+                    href="https://github.com/maxence-charriere/go-app"
+                    ><div
                       data-goapp="Stack"
                       style="
                         display: flex;
@@ -896,22 +911,23 @@
                         </svg>
                       </div>
                       <div>GitHub</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <a
                     class="link heading fit unselectable"
-                    href="https://opencollective.com/go-pwa"
-                  >
-                    <div
-                      data-goapp="Stack"
+                    title
+                    href="https://opencollective.com/go-app"
+                    ><div
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
+                      data-goapp="Stack"
                     >
                       <div
+                        data-goapp="Icon"
                         style="
                           width: 24px;
                           height: 24px;
@@ -921,7 +937,6 @@
                           min-height: 24px;
                           margin-right: 6px;
                         "
-                        data-goapp="Icon"
                       >
                         <svg
                           style="width: 24px; height: 24px"
@@ -934,21 +949,21 @@
                         </svg>
                       </div>
                       <div>Open Collective</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <div class="separator"></div>
                   <a
                     class="link heading fit unselectable"
+                    title
                     href="/privacy-policy"
-                  >
-                    <div
-                      data-goapp="Stack"
+                    ><div
                       style="
                         display: flex;
                         justify-content: flex-start;
                         align-items: center;
                         padding: 3px 0;
                       "
+                      data-goapp="Stack"
                     >
                       <div
                         style="
@@ -973,8 +988,8 @@
                         </svg>
                       </div>
                       <div>Privacy Policy</div>
-                    </div>
-                  </a>
+                    </div></a
+                  >
                   <div class="separator"></div>
                 </nav>
               </div>
@@ -1020,14 +1035,14 @@
                     title="Prerequisite"
                     >Prerequisite</a
                   >
-                  <a title="Install" class="index-link" href="#install"
+                  <a class="index-link" href="#install" title="Install"
                     >Install</a
                   >
-                  <a class="index-link" href="#code" title="Code">Code</a>
+                  <a href="#code" title="Code" class="index-link">Code</a>
                   <a
-                    title="Hello component"
                     class="index-link"
                     href="#hello-component"
+                    title="Hello component"
                   >
                     Hello component</a
                   >
@@ -1039,9 +1054,9 @@
                     >Build and Run</a
                   >
                   <a
+                    class="index-link"
                     href="#build-the-client"
                     title="Build the Client"
-                    class="index-link"
                   >
                     Build the Client</a
                   >
@@ -1052,7 +1067,7 @@
                   >
                     Build the Server</a
                   >
-                  <a href="#run-the-app" title="Run the App" class="index-link">
+                  <a class="index-link" href="#run-the-app" title="Run the App">
                     Run the App</a
                   >
                   <a
@@ -1065,9 +1080,9 @@
                   <div class="separator"></div>
                   <a class="index-link" href="#next" title="Next">Next</a>
                   <a
+                    title="Report an Issue"
                     class="index-link"
                     href="#report-an-issue"
-                    title="Report an Issue"
                     >Report an Issue</a
                   >
                   <div class="separator"></div>
@@ -1080,7 +1095,7 @@
           </div>
         </div>
         <div style="position: relative; flex-grow: 1; overflow: hidden">
-          <div class="fill" data-goapp-ui="scroll">
+          <div data-goapp-ui="scroll" class="fill">
             <div
               style="width: 100%; height: calc(100% - 24px); padding: 12px 0"
             >
@@ -1120,8 +1135,6 @@
                         "
                       >
                         <div
-                          data-goapp="Icon"
-                          class="icon-left unselectable"
                           style="
                             width: 90px;
                             height: 90px;
@@ -1130,6 +1143,8 @@
                             min-width: 90px;
                             min-height: 90px;
                           "
+                          data-goapp="Icon"
+                          class="icon-left unselectable"
                         >
                           <svg
                             style="width: 90px; height: 90px"
@@ -1146,7 +1161,7 @@
                     </header>
                     <div class="separator"></div>
                     <div>
-                      <aside style="display: none" class="heading fill">
+                      <aside class="heading fill" style="display: none">
                         <div
                           data-goapp="Stack"
                           style="
@@ -1174,17 +1189,268 @@
                           </div>
                         </div>
                       </aside>
+                      <div class="fill">
+                        <div class="markdown">
+                          <h2 id="intro">Intro</h2>
+
+                          <p>
+                            <strong>go-app</strong> is a package to build
+                            <a
+                              href="https://developers.google.com/web/progressive-web-apps/"
+                              >progressive web apps (PWA)</a
+                            >
+                            with the
+                            <a href="https://golang.org"
+                              >Go programming language</a
+                            >
+                            and
+                            <a href="https://webassembly.org">WebAssembly</a>.
+                          </p>
+
+                          <p>
+                            You are about to learn how to get started with this
+                            package by
+                            <strong
+                              >building and running an app that displays
+                              <code>Hello World</code></strong
+                            >.
+                          </p>
+
+                          <h2 id="prerequisite">Prerequisite</h2>
+
+                          <p>
+                            Using this package
+                            <strong
+                              >requires a fully functional Go environment
+                              installed with
+                              <a href="https://golang.org/doc/install"
+                                >Go 1.18</a
+                              >
+                              or greater</strong
+                            >.
+                          </p>
+
+                          <p>
+                            Go installation can be checked with the following
+                            command in a terminal:
+                          </p>
+
+                          <pre><code class="language-bash">go version
+</code></pre>
+
+                          <h2 id="install">Install</h2>
+
+                          <p>
+                            Create a Go package for your PWA and change
+                            directory to the newly created location:
+                          </p>
+
+                          <pre><code class="language-bash">mkdir -p $GOPATH/src/github.com/YOUR_GITHUB_ID/hello
+cd $GOPATH/src/github.com/YOUR_GITHUB_ID/hello
+</code></pre>
+
+                          <p>
+                            Then Initialize the <strong>go module</strong> and
+                            download the <strong>go-app</strong> package.
+                          </p>
+
+                          <pre><code class="language-bash">go mod init
+go get -u github.com/carmel/go-pwa/pkg/app
+</code></pre>
+
+                          <h2 id="code">Code</h2>
+
+                          <p>
+                            Here is the code used to create a progressive web
+                            app that displays a simple Hello World.
+                          </p>
+
+                          <h3 id="hello-component">Hello component</h3>
+
+                          <pre><code class="language-go">package main
+
+import (
+	&quot;log&quot;
+	&quot;net/http&quot;
+
+	&quot;github.com/carmel/go-pwa/pkg/app&quot;
+)
+
+// hello is a component that displays a simple &quot;Hello World!&quot;. A component is a
+// customizable, independent, and reusable UI element. It is created by
+// embedding app.Compo into a struct.
+type hello struct {
+	app.Compo
+}
+
+// The Render method is where the component appearance is defined. Here, a
+// &quot;Hello World!&quot; is displayed as a heading.
+func (h *hello) Render() app.UI {
+	return app.H1().Text(&quot;Hello World!&quot;)
+}
+</code></pre>
+
+                          <h3 id="main">Main</h3>
+
+                          <pre><code class="language-go">// The main function is the entry point where the app is configured and started.
+// It is executed in 2 different environments: A client (the web browser) and a
+// server.
+func main() {
+	// The first thing to do is to associate the hello component with a path.
+	//
+	// This is done by calling the Route() function,  which tells go-app what
+	// component to display for a given path, on both client and server-side.
+	app.Route(&quot;/&quot;, &amp;hello{})
+
+	// Once the routes set up, the next thing to do is to either launch the app
+	// or the server that serves the app.
+	//
+	// When executed on the client-side, the RunWhenOnBrowser() function
+	// launches the app,  starting a loop that listens for app events and
+	// executes client instructions. Since it is a blocking call, the code below
+	// it will never be executed.
+	//
+	// When executed on the server-side, RunWhenOnBrowser() does nothing, which
+	// lets room for server implementation without the need for precompiling
+	// instructions.
+	app.RunWhenOnBrowser()
+
+	// Finally, launching the server that serves the app is done by using the Go
+	// standard HTTP package.
+	//
+	// The Handler is an HTTP handler that serves the client and all its
+	// required resources to make it work into a web browser. Here it is
+	// configured to handle requests with a path that starts with &quot;/&quot;.
+	http.Handle(&quot;/&quot;, &amp;app.Handler{
+		Name:        &quot;Hello&quot;,
+		Description: &quot;An Hello World! example&quot;,
+	})
+
+	if err := http.ListenAndServe(&quot;:8000&quot;, nil); err != nil {
+		log.Fatal(err)
+	}
+}
+</code></pre>
+
+                          <h2 id="build-and-run">Build and run</h2>
+
+                          <p>
+                            Running a progressive app with
+                            <strong>go-app</strong> requires 2 Go programs:
+                          </p>
+
+                          <ul>
+                            <li>A client that runs in a web browser</li>
+                            <li>
+                              A server that serves the client and its resources
+                            </li>
+                          </ul>
+
+                          <p>
+                            At this point, the package has the following
+                            content:
+                          </p>
+
+                          <pre><code class="language-bash">.
+├── go.mod
+├── go.sum
+└── main.go
+
+0 directories, 4 files
+</code></pre>
+
+                          <h3 id="build-the-client">Build the client</h3>
+
+                          <pre><code class="language-bash">GOARCH=wasm GOOS=js go build -o web/app.wasm
+</code></pre>
+
+                          <p>
+                            Note that the build output is explicitly set to
+                            <code>web/app.wasm</code>. The reason why is that
+                            the <a href="/reference#Handler">Handler</a> expects
+                            the client to be a
+                            <strong>static resource</strong> located at the
+                            <code>/web/app.wasm</code> path.
+                          </p>
+
+                          <h3 id="build-the-server">Build the server</h3>
+
+                          <pre><code class="language-bash">go build
+</code></pre>
+
+                          <h3 id="run-the-app">Run the app</h3>
+
+                          <p>
+                            Now the client and server built, the package has the
+                            following content:
+                          </p>
+
+                          <pre><code class="language-bash">.
+├── go.mod
+├── go.sum
+├── hello
+├── main.go
+└── web
+    └── app.wasm
+
+1 directory, 6 files
+</code></pre>
+
+                          <p>The server is ran with the following command:</p>
+
+                          <pre><code class="language-bash">./hello
+</code></pre>
+
+                          <p>
+                            The app is now accessible from a web browser at
+                            <a href="http://localhost:8000"
+                              >http://localhost:8000</a
+                            >.
+                          </p>
+
+                          <h3 id="use-a-makefile">Use a Makefile</h3>
+
+                          <p>
+                            The build process can be simplified by writing a
+                            makefile:
+                          </p>
+
+                          <pre><code class="language-makefile">build:
+	GOARCH=wasm GOOS=js go build -o web/app.wasm
+	go build
+
+run: build
+	./hello
+</code></pre>
+
+                          <p>
+                            It can now be built and run with this single
+                            command:
+                          </p>
+
+                          <pre><code class="language-bash">make run
+</code></pre>
+
+                          <h2 id="next">Next</h2>
+
+                          <ul>
+                            <li><a href="/architecture">Architecture</a></li>
+                            <li><a href="/reference">Reference</a></li>
+                            <li><a href="/components">Build a component</a></li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                     <div class="separator"></div>
                     <aside>
-                      <header class="h2" id="repport-an-issue">
+                      <header id="repport-an-issue" class="h2">
                         Report an issue
                       </header>
                       <p>
                         Found something incorrect, a typo or have suggestions to
                         improve this page?
                         <a
-                          href="https://github.com/carmel/go-pwa/issues/new?title=Documentation issue in Getting Started page"
+                          href="https://github.com/maxence-charriere/go-app/issues/new?title=Documentation issue in Getting Started page"
                           >🚀 Submit a GitHub issue!</a
                         >
                       </p>
@@ -1208,7 +1474,7 @@
             overflow: hidden;
           "
         >
-          <div data-goapp-ui="flyer" class="fill">
+          <div class="fill" data-goapp-ui="flyer">
             <div
               style="width: 100%; height: calc(100% - 24px); padding: 12px 0"
             >
@@ -1216,7 +1482,6 @@
                 style="width: calc(100% - 36px); padding: 0 18px; height: 72px"
               ></div>
               <div
-                id="goapp-flyer-layout-f0e4f647-9095-40b3-a014-92f75f0eec69"
                 style="
                   display: flex;
                   flex-direction: column;
@@ -1226,25 +1491,26 @@
                   padding: 0 18px;
                   overflow: hidden;
                 "
+                id="goapp-flyer-layout-0e88aac5-d8e2-4747-8c45-206d2334b887"
               >
                 <div style="height: 0px; overflow: hidden">
                   <aside class="fill">
-                    <div data-goapp-ui="adsenseDisplay" class="fill no-scroll">
+                    <div class="fill no-scroll" data-goapp-ui="adsenseDisplay">
                       <ins
-                        id="goapp-adsense-display-fadb0125-cabc-419d-a752-a6ad7cdad355"
+                        id="goapp-adsense-display-4f5c5352-3206-4dad-9037-3f365369d2a9"
                       ></ins>
                     </div>
                   </aside>
                 </div>
                 <div style="display: none; height: 0px">
                   <div
+                    class="fill"
                     style="
                       display: flex;
                       justify-content: center;
                       align-items: center;
                     "
                     data-goapp="Stack"
-                    class="fill"
                   >
                     <aside class="magnify text-center">
                       <a
@@ -1252,7 +1518,6 @@
                         href="https://github.com/sponsors/maxence-charriere"
                       >
                         <div
-                          data-goapp="Icon"
                           class="center icon-top"
                           style="
                             width: 72px;
@@ -1262,6 +1527,7 @@
                             min-width: 72px;
                             min-height: 72px;
                           "
+                          data-goapp="Icon"
                         >
                           <svg
                             style="width: 72px; height: 72px"
@@ -1275,7 +1541,7 @@
                         </div>
                         <header class="h3 default">Support on GitHub</header>
                         <p class="subtext">
-                          Help with go-pwa development by sponsoring it on
+                          Help with go-app development by sponsoring it on
                           GitHub.
                         </p>
                       </a>
@@ -1313,7 +1579,7 @@
           overflow: hidden;
         "
       >
-        <div data-goapp-ui="scroll" class="menu fill menu-hamburger-background">
+        <div class="menu fill menu-hamburger-background" data-goapp-ui="scroll">
           <div style="width: 100%; height: calc(100% - 24px); padding: 12px 0">
             <div
               style="width: calc(100% - 24px); padding: 0 12px; height: 72px"
@@ -1328,7 +1594,7 @@
                 "
               >
                 <header>
-                  <a class="heading app-title" href="/">go-pwa</a>
+                  <a class="heading app-title" href="/">Go-App</a>
                 </header>
               </div>
             </div>
@@ -1343,8 +1609,8 @@
             >
               <nav>
                 <div class="separator"></div>
-                <a class="link heading fit unselectable" href="/">
-                  <div
+                <a href="/" class="link heading fit unselectable" title
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
@@ -1354,6 +1620,7 @@
                     data-goapp="Stack"
                   >
                     <div
+                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -1363,7 +1630,6 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
-                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -1376,13 +1642,13 @@
                       </svg>
                     </div>
                     <div>Home</div>
-                  </div>
-                </a>
-                <a
-                  href="/getting-started"
-                  class="link heading fit unselectable"
+                  </div></a
                 >
-                  <div
+                <a
+                  class="link heading fit unselectable"
+                  title
+                  href="/getting-started"
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1414,20 +1680,22 @@
                       </svg>
                     </div>
                     <div>Getting Started</div>
-                  </div>
-                </a>
-                <a href="/architecture" class="link heading fit unselectable">
-                  <div
+                  </div></a
+                >
+                <a
+                  title
+                  href="/architecture"
+                  class="link heading fit unselectable"
+                  ><div
+                    data-goapp="Stack"
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
-                    data-goapp="Stack"
                   >
                     <div
-                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -1437,6 +1705,7 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
+                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -1449,10 +1718,10 @@
                       </svg>
                     </div>
                     <div>Architecture</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/reference">
-                  <div
+                  </div></a
+                >
+                <a href="/reference" class="link heading fit unselectable" title
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1502,11 +1771,14 @@
                       </svg>
                     </div>
                     <div>Reference</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <div class="separator"></div>
-                <a class="link heading fit unselectable" href="/components">
-                  <div
+                <a
+                  class="link heading fit unselectable"
+                  title
+                  href="/components"
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1538,13 +1810,13 @@
                       </svg>
                     </div>
                     <div>Components</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <a
                   class="link heading fit unselectable"
+                  title
                   href="/declarative-syntax"
-                >
-                  <div
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1576,17 +1848,17 @@
                       </svg>
                     </div>
                     <div>Declarative Syntax</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/routing">
-                  <div
+                  </div></a
+                >
+                <a class="link heading fit unselectable" title href="/routing"
+                  ><div
+                    data-goapp="Stack"
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
-                    data-goapp="Stack"
                   >
                     <div
                       data-goapp="Icon"
@@ -1611,13 +1883,13 @@
                       </svg>
                     </div>
                     <div>Routing</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <a
                   class="link heading fit unselectable"
+                  title
                   href="/static-resources"
-                >
-                  <div
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
@@ -1649,10 +1921,10 @@
                       </svg>
                     </div>
                     <div>Images and Static Resources</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/js">
-                  <div
+                  </div></a
+                >
+                <a class="link heading fit unselectable" title href="/js"
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
@@ -1684,17 +1956,20 @@
                       </svg>
                     </div>
                     <div>JavaScript Interoperability</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/concurrency">
-                  <div
-                    data-goapp="Stack"
+                  </div></a
+                >
+                <a
+                  class="link heading fit unselectable"
+                  title
+                  href="/concurrency"
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
+                    data-goapp="Stack"
                   >
                     <div
                       data-goapp="Icon"
@@ -1719,10 +1994,10 @@
                       </svg>
                     </div>
                     <div>Concurrency</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/seo">
-                  <div
+                  </div></a
+                >
+                <a href="/seo" class="link heading fit unselectable" title
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1732,7 +2007,6 @@
                     "
                   >
                     <div
-                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -1742,6 +2016,7 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
+                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -1754,19 +2029,20 @@
                       </svg>
                     </div>
                     <div>SEO</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/lifecycle">
-                  <div
-                    data-goapp="Stack"
+                  </div></a
+                >
+                <a class="link heading fit unselectable" title href="/lifecycle"
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
+                    data-goapp="Stack"
                   >
                     <div
+                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -1776,7 +2052,6 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
-                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -1789,19 +2064,20 @@
                       </svg>
                     </div>
                     <div>Lifecycle and Updates</div>
-                  </div>
-                </a>
-                <a href="/install" class="link heading fit unselectable">
-                  <div
+                  </div></a
+                >
+                <a class="link heading fit unselectable" title href="/install"
+                  ><div
+                    data-goapp="Stack"
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
-                    data-goapp="Stack"
                   >
                     <div
+                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -1811,7 +2087,6 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
-                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -1824,10 +2099,10 @@
                       </svg>
                     </div>
                     <div>Install</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/testing">
-                  <div
+                  </div></a
+                >
+                <a class="link heading fit unselectable" title href="/testing"
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1859,10 +2134,10 @@
                       </svg>
                     </div>
                     <div>Testing</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/actions">
-                  <div
+                  </div></a
+                >
+                <a class="link heading fit unselectable" title href="/actions"
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1894,10 +2169,10 @@
                       </svg>
                     </div>
                     <div>Actions</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/states">
-                  <div
+                  </div></a
+                >
+                <a class="link heading fit unselectable" title href="/states"
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1929,10 +2204,13 @@
                       </svg>
                     </div>
                     <div>State Management</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/notifications">
-                  <div
+                  </div></a
+                >
+                <a
+                  href="/notifications"
+                  class="link heading fit unselectable"
+                  title
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -1942,6 +2220,7 @@
                     "
                   >
                     <div
+                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -1951,7 +2230,6 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
-                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -1964,18 +2242,18 @@
                       </svg>
                     </div>
                     <div>Notifications</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <div class="separator"></div>
-                <a class="link heading fit unselectable" href="/migrate">
-                  <div
-                    data-goapp="Stack"
+                <a class="link heading fit unselectable" title href="/migrate"
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
+                    data-goapp="Stack"
                   >
                     <div
                       data-goapp="Icon"
@@ -2000,10 +2278,13 @@
                       </svg>
                     </div>
                     <div>Migrate From v8 to v9</div>
-                  </div>
-                </a>
-                <a class="link heading fit unselectable" href="/github-deploy">
-                  <div
+                  </div></a
+                >
+                <a
+                  class="link heading fit unselectable"
+                  title
+                  href="/github-deploy"
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -2013,6 +2294,7 @@
                     "
                   >
                     <div
+                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -2022,7 +2304,6 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
-                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -2035,14 +2316,14 @@
                       </svg>
                     </div>
                     <div>Deploy on GitHub Pages</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <div class="separator"></div>
                 <a
                   class="link heading fit unselectable"
+                  title
                   href="https://twitter.com/jonhymaxoo"
-                >
-                  <div
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
@@ -2052,7 +2333,6 @@
                     data-goapp="Stack"
                   >
                     <div
-                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -2062,6 +2342,7 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
+                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -2074,20 +2355,20 @@
                       </svg>
                     </div>
                     <div>Twitter</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <a
                   class="link heading fit unselectable"
-                  href="https://github.com/carmel/go-pwa"
-                >
-                  <div
-                    data-goapp="Stack"
+                  title
+                  href="https://github.com/maxence-charriere/go-app"
+                  ><div
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
+                    data-goapp="Stack"
                   >
                     <div
                       data-goapp="Icon"
@@ -2112,13 +2393,13 @@
                       </svg>
                     </div>
                     <div>GitHub</div>
-                  </div>
-                </a>
-                <a
-                  href="https://opencollective.com/go-pwa"
-                  class="link heading fit unselectable"
+                  </div></a
                 >
-                  <div
+                <a
+                  class="link heading fit unselectable"
+                  title
+                  href="https://opencollective.com/go-app"
+                  ><div
                     data-goapp="Stack"
                     style="
                       display: flex;
@@ -2150,21 +2431,23 @@
                       </svg>
                     </div>
                     <div>Open Collective</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <div class="separator"></div>
-                <a href="/privacy-policy" class="link heading fit unselectable">
-                  <div
+                <a
+                  class="link heading fit unselectable"
+                  title
+                  href="/privacy-policy"
+                  ><div
+                    data-goapp="Stack"
                     style="
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
                       padding: 3px 0;
                     "
-                    data-goapp="Stack"
                   >
                     <div
-                      data-goapp="Icon"
                       style="
                         width: 24px;
                         height: 24px;
@@ -2174,6 +2457,7 @@
                         min-height: 24px;
                         margin-right: 6px;
                       "
+                      data-goapp="Icon"
                     >
                       <svg
                         style="width: 24px; height: 24px"
@@ -2186,8 +2470,8 @@
                       </svg>
                     </div>
                     <div>Privacy Policy</div>
-                  </div>
-                </a>
+                  </div></a
+                >
                 <div class="separator"></div>
               </nav>
             </div>
@@ -2204,8 +2488,8 @@
         class="goapp-logo goapp-spin"
         src="/web/icon.png"
       />
-      <p id="app-wasm-loader-label" class="goapp-label">
-        go-pwa documentation 0%
+      <p class="goapp-label" id="app-wasm-loader-label">
+        go-app documentation 0%
       </p>
     </aside>
   </body>

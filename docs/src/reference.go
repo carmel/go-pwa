@@ -55,7 +55,7 @@ func handleGetReference(ctx app.Context, a app.Action) {
 	content = strings.ReplaceAll(content, "▾", "")
 	content = strings.ReplaceAll(content, `title="Click to hide Overview section"`, "")
 	content = strings.ReplaceAll(content, `title="Click to hide Index section"`, "")
-	content = strings.ReplaceAll(content, "/src/github.com/carmel/go-pwa/", "https://github.com/carmel/go-pwa/blob/master/")
+	content = strings.ReplaceAll(content, "/src/github.com/carmel/go-pwa/", "https://github.com/maxence-charriere/go-app/blob/master/")
 
 	index, err := getHTML(doc, "#manual-nav")
 	if err != nil {

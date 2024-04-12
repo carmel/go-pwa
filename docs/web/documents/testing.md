@@ -1,6 +1,6 @@
 ## Intro
 
-Testing is an essential step to achieve app reliability. Since go-pwa is working on 2 different environments (web browser and server), it provides 2 testing [dispatchers](/reference#Dispatcher) to emulate [components lifecycle](/components#lifecycle-events) behaviors.
+Testing is an essential step to achieve app reliability. Since go-app is working on 2 different environments (web browser and server), it provides 2 testing [dispatchers](/reference#Dispatcher) to emulate [components lifecycle](/components#lifecycle-events) behaviors.
 
 ## Component server prerendering
 

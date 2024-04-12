@@ -1,6 +1,6 @@
 ## Declarative Syntax
 
-go-pwa uses a declarative syntax so you can **write reusable component-based UI elements just by using the Go programming language**.
+Go-app uses a declarative syntax so you can **write reusable component-based UI elements just by using the Go programming language**.
 
 ```go
 // A component that displays a Hello world by composing with HTML elements,
@@ -15,11 +15,11 @@ func (h *hello) Render() app.UI {
 	return app.Div().Body(
 		app.H1().Body(
 			app.Text("Hello, "),
-			app.If(h.name != "", func() app.UI {
-				return app.Text(h.name)
-			}).Else(func() app.UI {
-				return app.Text("World!")
-			}),
+			app.If(h.name != "",
+				app.Text(h.name),
+			).Else(
+				app.Text("World!"),
+			),
 		),
 		app.P().Body(
 			app.Input().
@@ -35,11 +35,11 @@ func (h *hello) Render() app.UI {
 
 ## Standard HTTP Server
 
-Serving an app built with go-pwa is done by using the [Go standard HTTP model](https://golang.org/pkg/net/http).
+Serving an app built with go-app is done by using the [Go standard HTTP model](https://golang.org/pkg/net/http).
 
 ```go
 func main() {
-    // go-pwa component routing (client-side):
+    // Go-app component routing (client-side):
 	app.Route("/", &hello{})
 	app.Route("/hello", &hello{})
 	app.RunWhenOnBrowser()

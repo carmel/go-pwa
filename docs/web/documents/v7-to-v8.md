@@ -1,6 +1,6 @@
 # V7 to V8 migration guide
 
-go-pwa V8 solves the [SEO](/seo) critical problem by providing server-side prerendering. Unfortunately, parts of the package had to be reworked, which resulted in breaking changes.
+Go-app V8 solves the [SEO](/seo) critical problem by providing server-side prerendering. Unfortunately, parts of the package had to be reworked, which resulted in breaking changes.
 
 This document is here to help to migrate V7 to V8, by enumerating things that have changed.
 
@@ -10,7 +10,7 @@ Replace `v7` imports by `v8`.
 
 ```go
 import (
-	"github.com/carmel/go-pwa/v9/pkg/app"
+	"github.com/carmel/go-pwa/pkg/app"
 )
 ```
 
@@ -25,7 +25,7 @@ Here is how it is done for the hello example:
 
 package main
 
-import "github.com/carmel/go-pwa/v7/pkg/app"
+import "github.com/maxence-charriere/go-app/v7/pkg/app"
 
 func main() {
 	app.Route("/", &hello{})
@@ -45,7 +45,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/carmel/go-pwa/v7/pkg/app"
+	"github.com/maxence-charriere/go-app/v7/pkg/app"
 )
 
 func main() {
@@ -70,7 +70,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/carmel/go-pwa/v9/pkg/app"
+	"github.com/carmel/go-pwa/pkg/app"
 )
 
 func main() {

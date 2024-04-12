@@ -3,16 +3,31 @@ package app
 import (
 	"bytes"
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/require"
 )
 
-func BenchmarkMountHTMLElement(b *testing.B) {
-	var m nodeManager
+func TestHTMLElementHTML(t *testing.T) {
+	t.Run("srcset", func(t *testing.T) {
+		e := Img().Src("/web/test.jpg").
+			SrcSet("/web/test.webp").
+			SrcSet("/web/test/jpg")
 
+		var b strings.Builder
+		e.html(&b)
+
+		html := b.String()
+
+		require.Equal(t, 1, strings.Count(html, "/web/test.webp"))
+		t.Log(html)
+	})
+}
+
+func BenchmarkMountHTMLElement(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		m.Mount(makeTestContext(), 1, Div().
+		client := NewClientTester(Div().
 			Class("shell").
 			Body(
 				H1().Class("title").
@@ -26,12 +41,11 @@ func BenchmarkMountHTMLElement(b *testing.B) {
 						fmt.Println("Yo!")
 					}),
 			))
+		client.Close()
 	}
 }
 
 func BenchmarkHTMLElementHTML(b *testing.B) {
-	var m nodeManager
-
 	div := Div().
 		Class("shell").
 		Body(
@@ -49,7 +63,29 @@ func BenchmarkHTMLElementHTML(b *testing.B) {
 
 	for n := 0; n < b.N; n++ {
 		var bytes bytes.Buffer
-		m.Encode(makeTestContext(), &bytes, div)
+		div.html(&bytes)
+	}
+}
+
+func BenchmarkHTMLElementHTMLIndent(b *testing.B) {
+	div := Div().
+		Class("shell").
+		Body(
+			H1().Class("title").
+				Text("Hello"),
+			Input().
+				Type("text").
+				Class("in").
+				Value("World").
+				Placeholder("Type a name.").
+				OnChange(func(ctx Context, e Event) {
+					fmt.Println("Yo!")
+				}),
+		)
+
+	for n := 0; n < b.N; n++ {
+		var bytes bytes.Buffer
+		div.htmlWithIndent(&bytes, 0)
 	}
 }
 

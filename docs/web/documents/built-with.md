@@ -1,6 +1,6 @@
-# Built with go-pwa
+# Built with go-app
 
-Here is a list of progressive web app built with **go-pwa**.
+Here is a list of progressive web app built with **go-app**.
 
 ## Lofimusic.app
 
@@ -29,6 +29,6 @@ An app to list, wake and scan nodes in a network.
 ## Next
 
 - [Getting started](/getting-started)
-- [Understand go-pwa architecture](/architecture)
+- [Understand go-app architecture](/architecture)
 - [How to create a component](/components)
 - [API reference](/reference)

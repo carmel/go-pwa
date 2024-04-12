@@ -13,13 +13,17 @@ func newSEOPage() *seoPage {
 	return &seoPage{}
 }
 
+func (p *seoPage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *seoPage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
 
 func (p *seoPage) initPage(ctx app.Context) {
 	ctx.Page().SetTitle("Building SEO-friendly PWA")
-	ctx.Page().SetDescription("Documentation about how to make a Progressive Web App indexable by search engines with go-pwa package.")
+	ctx.Page().SetDescription("Documentation about how to make a Progressive Web App indexable by search engines with go-app package.")
 	analytics.Page("seo", nil)
 }
 

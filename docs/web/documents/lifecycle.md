@@ -1,6 +1,6 @@
 ## Lifecycle Overview
 
-Apps created with go-pwa are WebAssembly binaries that are served through HTTP requests.
+Apps created with go-app are WebAssembly binaries that are served through HTTP requests.
 
 Because they are Progressive Web apps, they have to be available for offline mode. Under the hood, this is done by using [service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API) and caching mechanisms, which results in different app loading scenarios.
 
@@ -65,11 +65,11 @@ func (a *littleApp) Render() app.UI {
 		app.P().Text("That only display a text."),
 
 		// Displays an Update button when an update is available.
-		app.If(a.updateAvailable, func() app.UI {
-			return app.Button().
+		app.If(a.updateAvailable,
+			app.Button().
 				Text("Update!").
-				OnClick(a.onUpdateClick)
-		}),
+				OnClick(a.onUpdateClick),
+		),
 	)
 }
 

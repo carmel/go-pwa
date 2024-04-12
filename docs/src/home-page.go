@@ -14,6 +14,10 @@ func newHomePage() *homePage {
 	return &homePage{}
 }
 
+func (p *homePage) OnPreRender(ctx app.Context) {
+	p.initPage(ctx)
+}
+
 func (p *homePage) OnNav(ctx app.Context) {
 	p.initPage(ctx)
 }
@@ -26,15 +30,15 @@ func (p *homePage) initPage(ctx app.Context) {
 
 func (p *homePage) Render() app.UI {
 	return newPage().
-		Title("go-pwa").
+		Title("go-app").
 		Icon("/web/icon.png").
 		Index(
-			newIndexLink().Title("What is go-pwa?"),
+			newIndexLink().Title("What is go-app?"),
 			newIndexLink().Title("Updates"),
 			newIndexLink().Title("Declarative Syntax"),
 			newIndexLink().Title("Standard HTTP Server"),
 			newIndexLink().Title("Other features"),
-			newIndexLink().Title("Built With go-pwa"),
+			newIndexLink().Title("Built With go-app"),
 
 			app.Div().Class("separator"),
 
@@ -47,7 +51,7 @@ func (p *homePage) Render() app.UI {
 				Content(
 					newRemoteMarkdownDoc().
 						Class("fill").
-						Src("/web/documents/what-is-go-pwa.md"),
+						Src("/web/documents/what-is-go-app.md"),
 					newRemoteMarkdownDoc().
 						Class("fill").
 						Class("updates").
@@ -60,7 +64,7 @@ func (p *homePage) Render() app.UI {
 
 			app.Div().Class("separator"),
 
-			newBuiltWithGoapp().ID("built-with-go-pwa"),
+			newBuiltWithGoapp().ID("built-with-go-app"),
 
 			app.Div().Class("separator"),
 

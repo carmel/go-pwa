@@ -10,14 +10,15 @@ import (
 	"path"
 	"sync"
 	"syscall"
+	"time"
 
+	"github.com/SherClockHolmes/webpush-go"
 	"github.com/carmel/go-pwa/pkg/analytics"
 	"github.com/carmel/go-pwa/pkg/app"
 	"github.com/carmel/go-pwa/pkg/cli"
 	"github.com/carmel/go-pwa/pkg/errors"
 	"github.com/carmel/go-pwa/pkg/logs"
 	"github.com/carmel/go-pwa/pkg/ui"
-	"github.com/carmel/go-pwa/pkg/webpush"
 )
 
 const (
@@ -26,8 +27,8 @@ const (
 	backgroundColor    = "#2e343a"
 
 	buyMeACoffeeURL     = "https://www.buymeacoffee.com/maxence"
-	openCollectiveURL   = "https://opencollective.com/go-pwa"
-	githubURL           = "https://github.com/carmel/go-pwa"
+	openCollectiveURL   = "https://opencollective.com/go-app"
+	githubURL           = "https://github.com/maxence-charriere/go-app"
 	githubSponsorURL    = "https://github.com/sponsors/maxence-charriere"
 	twitterURL          = "https://twitter.com/jonhymaxoo"
 	coinbaseBusinessURL = "https://commerce.coinbase.com/checkout/851320a4-35b5-41f1-897b-74dd5ee207ae"
@@ -48,29 +49,29 @@ func main() {
 	ui.BlockPadding = 18
 	analytics.Add(analytics.NewGoogleAnalytics())
 
-	app.Route("/", app.NewZeroComponentFactory(newHomePage()))
-	app.Route("/getting-started", app.NewZeroComponentFactory(newGettingStartedPage()))
-	app.Route("/architecture", app.NewZeroComponentFactory(newArchitecturePage()))
-	app.Route("/reference", app.NewZeroComponentFactory(newReferencePage()))
+	app.Route("/", newHomePage())
+	app.Route("/getting-started", newGettingStartedPage())
+	app.Route("/architecture", newArchitecturePage())
+	app.Route("/reference", newReferencePage())
 
-	app.Route("/components", app.NewZeroComponentFactory(newComponentsPage()))
-	app.Route("/declarative-syntax", app.NewZeroComponentFactory(newDeclarativeSyntaxPage()))
-	app.Route("/routing", app.NewZeroComponentFactory(newRoutingPage()))
-	app.Route("/static-resources", app.NewZeroComponentFactory(newStaticResourcePage()))
-	app.Route("/js", app.NewZeroComponentFactory(newJSPage()))
-	app.Route("/concurrency", app.NewZeroComponentFactory(newConcurrencyPage()))
-	app.Route("/seo", app.NewZeroComponentFactory(newSEOPage()))
-	app.Route("/lifecycle", app.NewZeroComponentFactory(newLifecyclePage()))
-	app.Route("/install", app.NewZeroComponentFactory(newInstallPage()))
-	app.Route("/testing", app.NewZeroComponentFactory(newTestingPage()))
-	app.Route("/actions", app.NewZeroComponentFactory(newActionPage()))
-	app.Route("/states", app.NewZeroComponentFactory(newStatesPage()))
-	app.Route("/notifications", app.NewZeroComponentFactory(newNotificationsPage()))
+	app.Route("/components", newComponentsPage())
+	app.Route("/declarative-syntax", newDeclarativeSyntaxPage())
+	app.Route("/routing", newRoutingPage())
+	app.Route("/static-resources", newStaticResourcePage())
+	app.Route("/js", newJSPage())
+	app.Route("/concurrency", newConcurrencyPage())
+	app.Route("/seo", newSEOPage())
+	app.Route("/lifecycle", newLifecyclePage())
+	app.Route("/install", newInstallPage())
+	app.Route("/testing", newTestingPage())
+	app.Route("/actions", newActionPage())
+	app.Route("/states", newStatesPage())
+	app.Route("/notifications", newNotificationsPage())
 
-	app.Route("/migrate", app.NewZeroComponentFactory(newMigratePage()))
-	app.Route("/github-deploy", app.NewZeroComponentFactory(newGithubDeployPage()))
+	app.Route("/migrate", newMigratePage())
+	app.Route("/github-deploy", newGithubDeployPage())
 
-	app.Route("/privacy-policy", app.NewZeroComponentFactory(newPrivacyPolicyPage()))
+	app.Route("/privacy-policy", newPrivacyPolicyPage())
 
 	app.Handle(installApp, handleAppInstall)
 	app.Handle(updateApp, handleAppUpdate)
@@ -97,13 +98,16 @@ func main() {
 		Options(&githubOpts)
 
 	h := app.Handler{
-		Name:        "Documentation for go-pwa",
+		Name:        "Documentation for go-app",
 		Title:       defaultTitle,
 		Description: defaultDescription,
 		Author:      "Maxence Charriere",
-		Image:       "https://go-pwa.dev/web/images/go-pwa.png",
+		Image:       "https://go-app.dev/web/images/go-app.png",
+		Icon: app.Icon{
+			Default: "/web/icon.png",
+		},
 		Keywords: []string{
-			"go-pwa",
+			"go-app",
 			"go",
 			"golang",
 			"app",
@@ -124,9 +128,9 @@ func main() {
 		},
 		BackgroundColor: backgroundColor,
 		ThemeColor:      backgroundColor,
-		LoadingLabel:    "go-pwa documentation {progress}%",
+		LoadingLabel:    "go-app documentation {progress}%",
 		Styles: []string{
-			// "https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap",
+			"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap",
 			"/web/css/prism.css",
 			"/web/css/docs.css",
 		},
@@ -138,11 +142,12 @@ func main() {
 			analytics.GoogleAnalyticsHeader("G-SW4FQEM9VM"),
 		},
 		CacheableResources: []string{
-			"/web/documents/what-is-go-pwa.md",
+			"/web/documents/what-is-go-app.md",
 			"/web/documents/updates.md",
 			"/web/documents/home.md",
 			"/web/documents/home-next.md",
 		},
+		AutoUpdateInterval: time.Minute,
 	}
 
 	switch cli.Load() {
@@ -155,12 +160,12 @@ func main() {
 }
 
 func runLocal(ctx context.Context, h *app.Handler, opts localOptions) {
-	app.Log(logs.New("starting go-pwa documentation service").
+	app.Log(logs.New("starting go-app documentation service").
 		WithTag("port", opts.Port).
 		WithTag("version", h.Version),
 	)
 
-	h.Env = map[string]string{
+	h.Env = app.Environment{
 		"VAPID_PUBLIC_KEY": opts.VAPIDPublicKey,
 	}
 
@@ -247,7 +252,7 @@ func (h *notificationHandler) handleTests(w http.ResponseWriter, r *http.Request
 			notif := app.Notification{
 				Title: fmt.Sprintf("Push test from server %v", n),
 				Body:  fmt.Sprintf("YEAH BABY PUSH ME %v", n),
-				Icon:  "/web/images/go-pwa.png",
+				Icon:  "/web/images/go-app.png",
 				Path:  "/notifications#sending-push-notification",
 				// Actions: []app.NotificationAction{
 				// 	{Action: "js", Title: "JS", Path: "/js"},
